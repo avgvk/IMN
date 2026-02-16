@@ -395,10 +395,16 @@ with tabs[0]:
         t = st.tabs(["Top Mechanisms", "Top Structures"])
         with t[0]:
             figm = top_terms_bar(mech_counter, "Top Mechanisms (global)", top_n=20)
-            st.plotly_chart(figm, use_container_width=True) if figm else st.info("No mechanisms found.")
+            if figm is not None:
+                st.plotly_chart(figm, use_container_width=True)
+            else:
+                st.info("No mechanisms found.")
         with t[1]:
             figs = top_terms_bar(struct_counter, "Top Structures (global)", top_n=20)
-            st.plotly_chart(figs, use_container_width=True) if figs else st.info("No structures found.")
+            if figs is not None:
+                st.plotly_chart(figs, use_container_width=True)
+            else:
+                st.info("No structures found.")
 
     st.divider()
 
